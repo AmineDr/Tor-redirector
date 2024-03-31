@@ -6,21 +6,12 @@ my $os_name = `awk -F= '\$1=="ID_LIKE" { print \$2 ;}' /etc/os-release`;
 
 sub get_user {
 	my $username;
-
-	if ($os_name =~ /[U,u]buntu/) {
-		$username = "tor";
-	}
-
-	elsif ($os_name =~ /[D,d]ebian/) {
+	if ($os_name =~ /[D,d]ebian/) {
 		$username = "debian-tor";
 	}
 
 	elsif (($os_name =~ /[F,f]edora/) || ($os_name =~ /[C,c]entos/)) {
 		$username = "toranon";
-	}
-
-	elsif ($os_name =~ /[A,a]rch/) {
-		$username = "tor";
 	}
 
 	else {
@@ -33,11 +24,7 @@ sub get_user {
 sub get_os_name {
 	my $distro;
 
-	if (($os_name =~ /[U,u]buntu/) || ($os_name =~ /[D,d]ebian/)) {
-		$distro = "debian";
-	}
-
-	elsif ($os_name =~ /[F,f]edora/) {
+	if ($os_name =~ /[F,f]edora/) {
 		$distro = "fedora";
 	}
 
@@ -170,8 +157,6 @@ sub start {
 
 		return true;
 }
-
-
 
 sub get_status {
 	my $check_tor  = "https://check.torproject.org/api/ip";
